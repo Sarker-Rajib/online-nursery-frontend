@@ -15,6 +15,45 @@ type TProduct = {
   image: string
 }
 
+const categories = [
+  {
+    category: 'Flowers',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Flower-Plants.webp"
+  },
+  {
+    category: 'Fruits',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Fruits-Plants.webp"
+  },
+  {
+    category: 'Indoor Plants',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Bamboo-Plants.webp"
+  },
+  {
+    category: 'Cactus',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Cactus-Plants.webp"
+  },
+  {
+    category: 'Fertilizers',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Fertilizers.webp"
+  },
+  {
+    category: 'Soil',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Soils.webp"
+  },
+  {
+    category: 'Gardening Tools',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Gardening-Tools.webp"
+  },
+  {
+    category: 'Pebbles',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Pebbles.webp"
+  },
+  {
+    category: 'Tob',
+    url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Fertilizers-2.webp"
+  },
+]
+
 function Home() {
   const [data, setData] = useState<TProduct[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -38,16 +77,32 @@ function Home() {
     <>
       <Header />
       <Hero />
+      <div className="max-w-[1280px] mx-auto px-2">
 
+        <div className='py-24'>
 
-      <div>
-        {
-          loading ?
-            <p>Loading ... </p>
-            :
-            data?.map((item, i) => <p key={i}>{item.title}</p>)
-        }
-      </div>
+          <h2 className="text-4xl font-bold">Categories</h2>
+          <div className="grid grid-cols-4 gap-4">
+            {
+              categories.map((category, i) => (
+                <div key={i} className='text-center'>
+                  <img src={category.url} alt="Category" className="w-full p-3 rounded-md" />
+                  <h3>{category.category}</h3>
+                </div >
+              ))
+            }
+          </div>
+        </div >
+
+        <div>
+          {
+            loading ?
+              <p>Loading ... </p>
+              :
+              data?.map((item, i) => <p key={i}>{item.title}</p>)
+          }
+        </div>
+      </div >
     </>
   )
 }
