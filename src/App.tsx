@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css'
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
 
 type TProduct = {
   _id: string,
@@ -15,11 +17,14 @@ type TProduct = {
 
 function Home() {
   const [data, setData] = useState<TProduct[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     axios.get('https://online-nursery-backend-five.vercel.app/api/v1/products')
       .then(response => setData(response.data))
       .catch(error => console.error('Error fetching data:', error));
+    setLoading(false)
   }, []);
 
   // useEffect(() => {
@@ -31,16 +36,17 @@ function Home() {
 
   return (
     <>
-      <div className='max-w-[1280px] px-3 mx-auto'>
-        <p className="read-the-docs">
-          Home
-        </p>
+      <Header />
+      <Hero />
 
-        <div>
-          {
+
+      <div>
+        {
+          loading ?
+            <p>Loading ... </p>
+            :
             data?.map((item, i) => <p key={i}>{item.title}</p>)
-          }
-        </div>
+        }
       </div>
     </>
   )

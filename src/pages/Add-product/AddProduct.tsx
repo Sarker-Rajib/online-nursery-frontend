@@ -3,7 +3,7 @@ import { FileInput, FormInput } from "../../components/inputs/inputs";
 import axios from 'axios';
 
 
-const Login = () => {
+const AddProduct = () => {
     const [imgData, setImgData] = useState<File | null>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +61,6 @@ const Login = () => {
                     Create a Product
                 </h2>
 
-
                 <form onSubmit={handleSubmit}>
                     <FormInput label='Input your Product Title' name='title' type='text' placeholder='Product Title' required={true} />
                     <FormInput label='Input your Category' name='category' type='text' placeholder='Category' required={true} />
@@ -79,4 +78,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default AddProduct;
