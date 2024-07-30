@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { FileInput, FormInput } from "../../components/inputs/inputs";
+import { FileInput, FormInput, FormSelects, TextAreaInput } from "../../components/inputs/inputs";
 import axios from 'axios';
 
 
@@ -54,6 +54,18 @@ const AddProduct = () => {
         }
     };
 
+    const categorie = [
+        'Flowers Plants',
+        'Fruit Plants',
+        'Indoor Plants',
+        'Cactus',
+        'Fertilizers',
+        'Soil',
+        'Gardening Tools',
+        'Pebbles',
+        'Tob'
+    ]
+
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="w-full max-w-96 border border-green-300 shadow-md p-3 px-4 rounded">
@@ -63,10 +75,10 @@ const AddProduct = () => {
 
                 <form onSubmit={handleSubmit}>
                     <FormInput label='Input your Product Title' name='title' type='text' placeholder='Product Title' required={true} />
-                    <FormInput label='Input your Category' name='category' type='text' placeholder='Category' required={true} />
+                    <FormSelects label='Select your Category' name='category' required={true} options={categorie} />
                     <FormInput label='Input your Price' name='price' type='number' placeholder='Price' required={true} />
                     <FormInput label='Input your Quantity' name='quantity' type='number' placeholder='Quantity' required={true} />
-                    <FormInput label='Input your Description' name='description' type='text' placeholder='Description' required={true} />
+                    <TextAreaInput label='Input your Description' name='description' required={true} />
                     <FormInput label='Input your Rating' name='rating' type='number' placeholder='Rating' required={true} />
                     <FileInput label='Upload Product Image' name='image' type='file' onChange={handleChange} placeholder='Product Title' accept="image/*" required={true} />
 

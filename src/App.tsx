@@ -17,11 +17,11 @@ type TProduct = {
 
 const categories = [
   {
-    category: 'Flowers',
+    category: 'Flowers Plants',
     url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Flower-Plants.webp"
   },
   {
-    category: 'Fruits',
+    category: 'Fruit Plants',
     url: "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Fruits-Plants.webp"
   },
   {
