@@ -2,9 +2,9 @@ import { ChangeEvent, useState } from "react";
 import { FileInput, FormInput, FormSelects, TextAreaInput } from "../../components/inputs/inputs";
 import axios from 'axios';
 
-
 const AddProduct = () => {
     const [imgData, setImgData] = useState<File | null>();
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         // const { value, files } = e.target;
@@ -14,6 +14,8 @@ const AddProduct = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        setLoading(true)
 
         const form = e.target
         const title = form.title.value
@@ -52,6 +54,8 @@ const AddProduct = () => {
                 console.error('Error uploading image:', error);
             }
         }
+
+        setLoading(false)
     };
 
     const categorie = [
@@ -82,7 +86,8 @@ const AddProduct = () => {
                     <FormInput label='Input your Rating' name='rating' type='number' placeholder='Rating' required={true} />
                     <FileInput label='Upload Product Image' name='image' type='file' onChange={handleChange} placeholder='Product Title' accept="image/*" required={true} />
 
-                    <input type="submit" value={'Submit'} className="bg-green-500 my-3 w-full p-2 rounded text-white cursor-pointer" />
+                    <input type="submit" value={'Submit'} className="bg-green-500 my-3 w-full p-2 rounded text-white cursor-pointer" disabled={loading} />
+                    {loading && <p>Please Wait...</p>}
                 </form>
 
             </div>
