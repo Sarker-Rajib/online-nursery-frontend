@@ -3,6 +3,9 @@ import axios from 'axios';
 import './App.css'
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
+import { useAppDispatch, useAppSelector } from './redux/hook';
+import { addToCart } from './redux/features/cartSlice';
+import Footer from './components/Footer/Footer';
 
 type TProduct = {
   _id: string,
@@ -58,6 +61,7 @@ function Home() {
   const [data, setData] = useState<TProduct[] | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     axios.get('https://online-nursery-backend-five.vercel.app/api/v1/products')
@@ -73,36 +77,60 @@ function Home() {
   //     .catch(error => console.error('Error fetching data:', error));
   // }, []);
 
+  const products = useAppSelector(state => state.cart.products)
+
   return (
     <>
       <Header />
       <Hero />
-      <div className="max-w-[1280px] mx-auto px-2">
+      <>
+        <div className="max-w-[1280px] mx-auto px-2">
 
-        <div className='py-24'>
+          <div className='py-24'>
 
-          <h2 className="text-4xl font-bold">Categories</h2>
-          <div className="grid grid-cols-4 gap-4">
+            <h2 className="text-4xl font-bold">Categories</h2>
+            <div className="grid grid-cols-4 gap-4">
+              {
+                categories.map((category, i) => (
+                  <div key={i} className='text-center'>
+                    <img src={category.url} alt="Category" className="w-full p-3 rounded-md" />
+                    <h3>{category.category}</h3>
+                  </div >
+                ))
+              }
+            </div>
+
+            <>
+              {
+                products && <p>{products[0]?.quantity}</p>
+              }
+
+              <button className='border border-red-600 p-2 rounded'
+                onClick={() => dispatch(addToCart({
+                  id: "stting",
+                  name: "string",
+                  quantity: 1,
+                  price: 200,
+                  image: "string"
+                }))}
+              >
+                Add to cart
+              </button>
+            </>
+
+          </div >
+
+          <div>
             {
-              categories.map((category, i) => (
-                <div key={i} className='text-center'>
-                  <img src={category.url} alt="Category" className="w-full p-3 rounded-md" />
-                  <h3>{category.category}</h3>
-                </div >
-              ))
+              loading ?
+                <p>Loading ... </p>
+                :
+                data?.map((item, i) => <p key={i}>{item.title}</p>)
             }
           </div>
         </div >
-
-        <div>
-          {
-            loading ?
-              <p>Loading ... </p>
-              :
-              data?.map((item, i) => <p key={i}>{item.title}</p>)
-          }
-        </div>
-      </div >
+      </>
+      <Footer />
     </>
   )
 }
