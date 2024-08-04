@@ -1,13 +1,5 @@
 # #5 Online Nursery Website 🌱
 
-## Project Overview 🌱
-
-Develop an online nursery website using React, Redux, Node.js, and Express.js.
-The website will allow users to browse, filter, and search for products, add products to their cart, and make online payments via Stripe.js.
-Additionally, there will be a product and category management section for CRUD operations.
-
-## 🌟Features
-
 ### 1\. Public Routes 🚀
 
 All routes on the website are accessible without authentication.
@@ -44,17 +36,6 @@ All routes on the website are accessible without authentication.
   - **Stripe Integration**: Users can make online payments securely using Stripe.js. (Optional)
   - **Cash on Delivery (COD)**: Alternatively, customers can choose to pay in cash upon delivery of their order.
 
-## 📋Landing Page Components
-
-- **Navbar**: Navigation bar with links to various sections and pages.
-- **Hero Section**: Highlighting the main features or promotions.
-- **Product Search, Filter, and Pagination**: Options for users to refine their product search.
-- **Category Section**: Display different product categories.
-- **Product List**: Display products in card format with image, title, price, rating, and an "Add to Cart" button.
-- **Product Details**: Clicking on a product card navigates to the product details page with comprehensive information including image, title, description, price, rating, Category and an "Add to Cart" button.
-- **Image Gallery**: Showcases images of the products, displayed in a mosaic view (For reference: [https://ps.w.org/photo-gallery/assets/screenshot-5.png?rev=2039606](https://ps.w.org/photo-gallery/assets/screenshot-5.png?rev=2039606) , [https://assets.hongkiat.com/uploads/free-responsive-image-gallery/8-bootstrap-gallery.jpeg](https://assets.hongkiat.com/uploads/free-responsive-image-gallery/8-bootstrap-gallery.jpeg)).
-- **Footer**: Additional links and information.
-
 ## 📑Page List
 
 - **Landing Page**: Main page with product search, filtering, pagination, category section, and product list.
@@ -64,36 +45,7 @@ All routes on the website are accessible without authentication.
 - **Payment Page**: Page for handling payments through Stripe.js.
 - **Product and Category Management Page**: Interface for managing products and categories.
 
-## 🗂️State Management
-
-- **Redux**: Use Redux to manage the state for products, categories, cart, and other actions.
-- **Actions and Reducers**: Create actions and reducers for managing state changes.
-
-## 🎨UI/UX
-
-- **Quality**: The user interface should be reasonably good, with wisely chosen color combinations. The user experience should be smooth and intuitive. Use UI/UX design principles to enhance the overall aesthetics and usability of the site.
-- **Marks Allocation**: There will be a dedicated mark allocated for UI/UX quality.
-
 ## 🎁Bonus Features
 
 - **Debounce API Calls**: Implement debouncing for the search functionality to reduce the number of API calls.
 - **Page Refresh Warning**: Show a warning message when refreshing the page if the cart is not empty, to prevent loss of cart data.
-
-## ⭐Optional Features
-
-These features are recommended to enhance the project but do not have dedicated marks.
-
-- **Integrate Stripe Payment**: For processing payments.
-- **Implement Pagination**: In the Products page, with a custom implementation.
-
-## 🌐References for Idea Generation
-
-Here are some websites to inspire ideas for your project. These references are only for idea generation and should not be copied directly:
-
-- [Treevaly](https://treevaly.com/)
-- [Nursery Plants BD](https://nurseryplantsbd.com/)
-- [Trees Direct](https://treesdirect.co.uk/)
-- [Garden Goods Direct](https://gardengoodsdirect.com/)
-- [The Tree Center](https://www.thetreecenter.com/)
-
-> Note: The references are only for idea generation. Do not copy the design from these sources.

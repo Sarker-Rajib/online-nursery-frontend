@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import './App.css'
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
+import axios from 'axios';
 import { useAppDispatch, useAppSelector } from './redux/hook';
 import { addToCart } from './redux/features/cartSlice';
+import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { tilesImages } from './fake-data/fDAta';
+import { Gallery } from "react-grid-gallery";
+import { useEffect, useState } from 'react';
+import Hero from './components/Hero/Hero';
+import { Link } from 'react-router-dom';
 
-type TProduct = {
+export type TProduct = {
   _id: string,
   title: string,
   category: string,
@@ -81,8 +84,17 @@ function Home() {
 
   return (
     <>
+      {/* header */}
       <Header />
+
+      {/* hero */}
       <Hero />
+
+
+      {/* Product Search, Filter, and Pagination */}
+
+
+      {/* Category Section */}
       <>
         <div className="max-w-[1280px] mx-auto px-2">
 
@@ -105,31 +117,59 @@ function Home() {
                 products && <p>{products[0]?.quantity}</p>
               }
 
-              <button className='border border-red-600 p-2 rounded'
-                onClick={() => dispatch(addToCart({
-                  id: "stting",
-                  name: "string",
-                  quantity: 1,
-                  price: 200,
-                  image: "string"
-                }))}
-              >
-                Add to cart
-              </button>
             </>
 
           </div >
-
-          <div>
-            {
-              loading ?
-                <p>Loading ... </p>
-                :
-                data?.map((item, i) => <p key={i}>{item.title}</p>)
-            }
-          </div>
         </div >
       </>
+
+      {/* Product List */}
+      <div className="max-w-[1280px] mx-auto px-2 py-8">
+        <h2 className='text-2xl mb-6 underline'>Products Gallery:</h2>
+        {
+          loading ?
+            <p>Loading ... </p>
+            :
+            <div className='grid grid-cols-4'>
+              {
+                data?.map((item, i) => <div key={i}
+                  className='border shadow rounded-lg p-2 overflow-hidden'
+                >
+                  <img src={item.image} alt={item.title} className='w-full rounded-lg h-68' />
+                  <h3>{item.title}</h3>
+                  <p>Details : {item.description.length >= 200 ? item.description.slice(0, 200) : item.description}</p>
+                  <p>Category : {item.category}</p>
+                  <p>Available Stock : {item.quantity}</p>
+                  <p>Rating : {item.rating}</p>
+                  <p>Price: ${item.price}</p>
+                  <button className='w-full border border-red-600 p-2 rounded'
+                    onClick={() => dispatch(addToCart({
+                      id: item._id,
+                      name: item.title,
+                      quantity: 1,
+                      price: item.price,
+                      image: item.image,
+                      categorie: item.category
+                    }))}
+                  >
+                    Add to cart
+                  </button>
+                  <br />
+                  <Link to={`/product/${item._id}`}
+                    className='border border-red-600 p-2 rounded block mt-2 text-center'
+                  >View Details</Link>
+                </div>)
+              }
+            </div>
+        }
+      </div>
+
+      {/* Image Gallery */}
+      <div className="image-tiles py-4">
+        <Gallery images={tilesImages} />
+      </div>
+
+      {/* footer */}
       <Footer />
     </>
   )
