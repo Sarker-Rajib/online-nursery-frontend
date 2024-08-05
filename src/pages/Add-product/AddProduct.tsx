@@ -2,6 +2,26 @@ import { ChangeEvent, useState } from "react";
 import { FileInput, FormInput, FormSelects, TextAreaInput } from "../../components/inputs/inputs";
 import axios from 'axios';
 
+export const categories = [
+    'Flowers Plants',
+    'Fruit Plants',
+    'Indoor Plants',
+    'Cactus',
+    'Fertilizers',
+    'Soil',
+    'Gardening Tools',
+    'Pebbles',
+    'Tob'
+];
+
+export const ratingNumbers: Array<number> = [
+    1,
+    2,
+    3,
+    4,
+    5,
+]
+
 const AddProduct = () => {
     const [imgData, setImgData] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
@@ -18,12 +38,12 @@ const AddProduct = () => {
         setError(null);
 
         const form = e.currentTarget;
+        const title = form.titleName.value;
         const category = form.category.value;
         const price = form.price.value;
         const quantity = form.quantity.value;
         const description = form.description.value;
         const rating = form.rating.value;
-        const title = form.title.value;
 
 
         if (imgData) {
@@ -68,26 +88,6 @@ const AddProduct = () => {
     };
 
 
-    const categories = [
-        'Flowers Plants',
-        'Fruit Plants',
-        'Indoor Plants',
-        'Cactus',
-        'Fertilizers',
-        'Soil',
-        'Gardening Tools',
-        'Pebbles',
-        'Tob'
-    ];
-
-    const ratingNumbers: Array<number> = [
-        1,
-        2,
-        3,
-        4,
-        5,
-    ]
-
     return (
         <div className="p-4 flex items-center justify-center">
             <div className="w-full max-w-[800px] border border-green-300 shadow-md p-3 px-4 rounded">
@@ -97,14 +97,14 @@ const AddProduct = () => {
 
                 <form onSubmit={handleSubmit}>
                     <div className="grid md:grid-cols-2 gap-4">
-                        <FormInput label='Input your Product Title' name='title' type='text' placeholder='Product Title' required />
+                        <FormInput label='Input your Product titleName' name='titleName' type='text' placeholder='Product Title' required />
                         <FormSelects label='Select your Category' name='category' required options={categories} />
                         <FormInput label='Input your Price' name='price' type='number' placeholder='Price' required />
                         <FormInput label='Input your Quantity' name='quantity' type='number' placeholder='Quantity' required />
                         <FormSelects label='Select your Rating' name='rating' required options={ratingNumbers} />
                     </div>
                     <TextAreaInput label='Input your Description' name='description' required />
-                    <FileInput label='Upload Product Image' name='image' type='file' onChange={handleChange} placeholder='Product Title' accept="image/*" required />
+                    <FileInput label='Upload Product Image' name='image' type='file' onChange={handleChange} placeholder='Product titleName' accept="image/*" required />
 
                     <input type="submit" value='Add Product' className="bg-green-500 my-3 w-full p-2 rounded text-white cursor-pointer" disabled={loading} />
                     {loading && <p>Please Wait...</p>}
