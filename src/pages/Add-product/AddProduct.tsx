@@ -44,7 +44,7 @@ const AddProduct = () => {
                 };
 
                 const res = await axios.post('https://online-nursery-backend-five.vercel.app/api/v1/products/create-product', dataToSave);
-                // console.log(res);
+                console.log(res);
                 alert('Data saved successfully!');
                 form.reset();
                 setImgData(null); // Reset image state
