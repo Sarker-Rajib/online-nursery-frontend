@@ -30,9 +30,11 @@ const AllProducts = () => {
                             data?.map((item, i) => <div key={i}
                                 className='border shadow rounded-lg p-2 overflow-hidden'
                             >
-                                <img src={item.image} alt={item.title} className='w-full rounded-lg h-68' />
+                                <div className='rounded-lg h-44 overflow-hidden'>
+                                    <img src={item.image} alt={item.title} className='w-full h-full' />
+                                </div>
                                 <h3>{item.title}</h3>
-                                <p>Details : {item.description.length >= 200 ? item.description.slice(0, 200) : item.description}</p>
+                                <p>Details : {item.description.length >= 20 ? item.description.slice(0, 20) + ' ...' : item.description}</p>
                                 <p>Category : {item.category}</p>
                                 <p>Available Stock : {item.quantity}</p>
                                 <p>Rating : {item.rating}</p>

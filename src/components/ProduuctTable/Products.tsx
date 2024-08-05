@@ -133,13 +133,15 @@ const Products = () => {
                     <tbody>
                         {
                             products?.map((product, i) => <tr key={i}>
-                                <td className="p-1">
-                                    <img width={50} height={50} src={product.image} alt={product?.title} className="rounded-lg" />
+                                <td className="p-1 border-b">
+                                    <span className="inline-block w-7 h-7 overflow-hidden">
+                                        <img src={product.image} alt={product?.title} className="rounded-lg" />
+                                    </span>
                                 </td>
-                                <td className="p-1">{product?.title}</td>
-                                <td className="p-1">${product?.price}</td>
-                                <td className="p-1">{product?.category}</td>
-                                <td className="p-1">
+                                <td className="p-1 border-b">{product?.title}</td>
+                                <td className="p-1 border-b">${product?.price}</td>
+                                <td className="p-1 border-b">{product?.category}</td>
+                                <td className="p-1 border-b">
                                     <button
                                         className='border border-red-600 p-2 rounded inline-block ms-2 mt-2 text-center'
                                         onClick={() => setUpdatePop(product)}
