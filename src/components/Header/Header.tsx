@@ -11,10 +11,10 @@ const Header = () => {
                         <a href="/" className='border rounded p-1 px-3 mr-2 text-white'>Home</a>
                     </li>
                     <li>
-                        <a href="/" className='border rounded p-1 px-3 mr-2 text-white'>Products</a>
+                        <a href="/products" className='border rounded p-1 px-3 mr-2 text-white'>Products</a>
                     </li>
                     <li>
-                        <a href="/" className='border rounded p-1 px-3 text-white'>Dashboard</a>
+                        <a href="/dashboard" className='border rounded p-1 px-3 text-white'>Dashboard</a>
                     </li>
                 </ul>
             </div>

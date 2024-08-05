@@ -25,6 +25,7 @@ const AddProduct = () => {
         const rating = form.rating.value;
         const title = form.title.value;
 
+
         if (imgData) {
             const formDataImage = new FormData();
             formDataImage.append('image', imgData);
@@ -44,10 +45,17 @@ const AddProduct = () => {
                 };
 
                 const res = await axios.post('https://online-nursery-backend-five.vercel.app/api/v1/products/create-product', dataToSave);
-                console.log(res);
-                alert('Data saved successfully!');
-                form.reset();
-                setImgData(null); // Reset image state
+                console.log(res.data);
+
+                if (res.data.err) {
+                    alert(res.data.err.message);
+                    console.log(res.data.err.message);
+                } else {
+                    alert('Data saved successfully!');
+                    form.reset();
+                    setImgData(null);
+                }
+
             } catch (error) {
                 console.error('Error uploading image or saving data:', error);
                 setError('Failed to upload image or save data. Please try again.');
@@ -58,6 +66,7 @@ const AddProduct = () => {
 
         setLoading(false);
     };
+
 
     const categories = [
         'Flowers Plants',
@@ -71,23 +80,33 @@ const AddProduct = () => {
         'Tob'
     ];
 
+    const ratingNumbers: Array<number> = [
+        1,
+        2,
+        3,
+        4,
+        5,
+    ]
+
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="w-full max-w-96 border border-green-300 shadow-md p-3 px-4 rounded">
+        <div className="p-4 flex items-center justify-center">
+            <div className="w-full max-w-[800px] border border-green-300 shadow-md p-3 px-4 rounded">
                 <h2 className="text-center text-2xl py-4 font-bold">
                     Create a Product
                 </h2>
 
                 <form onSubmit={handleSubmit}>
-                    <FormInput label='Input your Product Title' name='title' type='text' placeholder='Product Title' required />
-                    <FormSelects label='Select your Category' name='category' required options={categories} />
-                    <FormInput label='Input your Price' name='price' type='number' placeholder='Price' required />
-                    <FormInput label='Input your Quantity' name='quantity' type='number' placeholder='Quantity' required />
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <FormInput label='Input your Product Title' name='title' type='text' placeholder='Product Title' required />
+                        <FormSelects label='Select your Category' name='category' required options={categories} />
+                        <FormInput label='Input your Price' name='price' type='number' placeholder='Price' required />
+                        <FormInput label='Input your Quantity' name='quantity' type='number' placeholder='Quantity' required />
+                        <FormSelects label='Select your Rating' name='rating' required options={ratingNumbers} />
+                    </div>
                     <TextAreaInput label='Input your Description' name='description' required />
-                    <FormInput label='Input your Rating' name='rating' type='number' placeholder='Rating' required />
                     <FileInput label='Upload Product Image' name='image' type='file' onChange={handleChange} placeholder='Product Title' accept="image/*" required />
 
-                    <input type="submit" value='Submit' className="bg-green-500 my-3 w-full p-2 rounded text-white cursor-pointer" disabled={loading} />
+                    <input type="submit" value='Add Product' className="bg-green-500 my-3 w-full p-2 rounded text-white cursor-pointer" disabled={loading} />
                     {loading && <p>Please Wait...</p>}
                     {error && <p className="text-red-500">{error}</p>}
                 </form>

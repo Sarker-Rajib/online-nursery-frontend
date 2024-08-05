@@ -1,21 +1,3 @@
-# #5 Online Nursery Website 🌱
-
-### 1\. Public Routes 🚀
-
-All routes on the website are accessible without authentication.
-
-### 2\. Product and Category Management 🛠️
-
-- **Product List Table:**
-  - Display products in a table format. The table should include columns for the image, title, price, category, and actions.
-- **Action Buttons:**
-  - Include buttons for updating and deleting products.
-  - Updating a product should open a form in a modal allowing the user to modify existing details.
-  - Deleting a product should open a confirmation modal, asking the user for confirmation before removal.
-- **Adding a Product:**
-  - Include a button to create the new product.
-  - Provide a form to add new products with fields for category, title, price, quantity, description, rating, image (you can use ImgBB for image upload or allow direct link entry).
-
 > All update, delete, and create actions should reflect in real-time, implementing an optimistic update of the UI.
 
 ### 3\. Product Browsing 🌿
