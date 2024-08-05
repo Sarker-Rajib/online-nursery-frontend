@@ -12,15 +12,15 @@ export const GeneralRouter = createBrowserRouter([
         element: <Home />
     },
     {
-        path: '/product/:productId',
+        path: 'product/:productId',
         element: <ProductDetails />
     },
     {
-        path: '/products',
+        path: 'products',
         element: <AllProducts />
     },
     {
-        path: '/dashboard',
+        path: 'dashboard',
         element: <Dashboard />,
         children: [
             {
